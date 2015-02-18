@@ -11,4 +11,3 @@ github_username: smarulanda
 
 # Build settings
 markdown: kramdown
-keep_files: [webhook.php]
