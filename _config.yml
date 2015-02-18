@@ -1,0 +1,14 @@
+# Site settings
+title: Sebastian Marulanda
+email: me@sebastianmarulanda.com
+description: > # this means to ignore newlines until "baseurl:"
+  Sebastian Marulanda is an Atlanta based web developer and designer.
+permalink: /blog/:title
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://sebastianmarulanda.com" # the base hostname & protocol for your site
+twitter_username: smarulanda
+github_username: smarulanda
+
+# Build settings
+markdown: kramdown
+keep_files: [webhook.php]

@@ -1,0 +1,114 @@
+//--------------------------------------
+// Basic styling
+//--------------------------------------
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+:focus {
+	outline: 1px dotted $border-color;
+}
+
+body {
+	font-family: $base-font-family;
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+	font-weight: 300;
+	color: $text-color;
+	background: $background-pattern;
+	background-color: $background-color;
+}
+
+//--------------------------------------
+// Headings
+//--------------------------------------
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Oswald', sans-serif;
+	font-weight: 300;
+	margin-top: 0;
+}
+
+//--------------------------------------
+// Links
+//--------------------------------------
+a {
+	color: $primary-color;
+	text-decoration: none;
+	transition: color 0.2s linear;
+
+	&:hover {
+		color: darken($primary-color, 10%);
+	}
+}
+
+//--------------------------------------
+// Code formatting
+//--------------------------------------
+pre,
+code {
+	font-size: $base-font-size * 0.9;
+	border: 1px solid $border-color;
+//	border-radius: 3px;
+	background-color: $background-color;
+}
+
+code {
+	padding: 1px 5px;
+}
+
+pre {
+	padding: 8px 12px;
+	overflow-x: scroll;
+
+	> code {
+		border: 0;
+		padding-right: 0;
+		padding-left: 0;
+	}
+}
+
+//--------------------------------------
+// Forms
+//--------------------------------------
+form {
+	input, textarea {
+		width: 100%;
+		border: none;
+		background: $background-color;
+		padding: $base-font-size;
+		transition: background 0.2s linear;
+
+		&:hover, &:focus {
+			background: darken($background-color, 5%);
+		}
+	}
+
+	input[type='submit'] {
+		background: $primary-color;
+		color: #fff;
+
+		&:hover, &:focus {
+			background: $gray-color-dark;
+		}
+	}
+}
+
+//--------------------------------------
+// Highlighting
+//--------------------------------------
+::selection {
+	background: $primary-color;
+	color: #fff;
+}
+
+//--------------------------------------
+// Buttons
+//--------------------------------------
+.btn {
+	font-family: 'Oswald', sans-serif;
+	display: inline-block;
+}

@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<section class="post">
+	<article class="post-header">
+		<h4 class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</h4>
+		<h1 class="post-title">{{ page.title }}</h1>
+	</article>
+
+	<article class="post-content">
+		{{ content }}
+	</article>
+</section>

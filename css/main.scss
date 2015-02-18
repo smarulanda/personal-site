@@ -1,0 +1,15 @@
+---
+# Front Matter (required)
+---
+@charset "utf-8";
+
+@import "normalize";
+
+@import "variables";
+
+@import "base";
+@import "syntax-highlighting";
+
+@media (max-width: $breakpoint-sm) { @import "layout_sm"; }
+@media (min-width: $breakpoint-sm + 1) and (max-device-width : $breakpoint-md) { @import "layout_md"; }
+@media (min-width: $breakpoint-md + 1) { @import "layout_lg"; }
