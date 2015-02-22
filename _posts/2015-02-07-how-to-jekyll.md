@@ -1,9 +1,10 @@
 ---
 layout: post
-title:  "How to get a site up and running with Jekyll"
+title:  "How I got this site up and running with Jekyll"
 date:   2015-02-07 14:22:27
 categories: jekyll
 ---
+I really like Jekyll. 
 It's important to add the `_drafts` and `_site` directories to your `.gitignore` file.
 I pull the repo into my DigitalOcean droplet. Next, I set up a virtualhost in Apache to point my domain to the site.
 
