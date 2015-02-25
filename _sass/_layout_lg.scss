@@ -148,11 +148,11 @@ footer {
 		max-width: calc(100% - (#{$spacing-unit} * 4));
 		margin: 0 auto;
 
-		#made-with {
+		#copyright {
 			margin-top: 4px;
 			color: $gray-color;
 			float: left;
-			i { color: #da766b; }
+			//i { color: #da766b; }
 		}
 
 		ul#social {
