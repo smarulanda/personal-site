@@ -10,4 +10,17 @@ layout: default
 	<article class="post-content">
 		{{ content }}
 	</article>
+	
+	{% if page.categories %}
+		<article>
+			<h2>More posts about</h2>
+			<ul>
+				{% for category in page.categories %}
+					<li>
+						<a href="/category/{{ category }}">{{ category }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</article>
+	{% endif %}
 </section>

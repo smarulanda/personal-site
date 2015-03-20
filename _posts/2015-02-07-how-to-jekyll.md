@@ -2,11 +2,13 @@
 layout: post
 title:  "How I got this site running with Jekyll and auto-deploying with Git"
 date:   2015-02-07 14:22:27
-categories: jekyll
+categories: [jekyll, git, digitalocean, apache, bash]
 ---
 I really like [Jekyll][jekyll]. Well, that's mostly true. Moreso, I really like what Jekyll isn't. It's not an over-bloated CMS. It doesn't have a WYSIWYG editor. It doesn't have a file-uploader. It doesn't require a database. Basically, it's not Wordpress.
 
 I'd heard enough guests on the [ShopTalk][shoptalk] podcast recommend Jekyll so I decided to give it a look. It's great. It ships with built-in [Sass][sass] support. I can write my blog posts and pages in Markdown or HTML (or any custom parser). And with a git hook I can deploy my changes with a simple commit.
+
+**Note:** [GitHub Pages][github pages] supports [Jekyll][github pages jekyll] and will actually run your project through the program on every push. This is great if you don't want to provide your own hosting, however, these pages will be generated using the `--safe` option. This means you can't use certain fun Jekyll features like [plugins][jekyll plugins].
 
 So let's go through all the steps I took to get this site running and automatically deploying.
 
@@ -68,7 +70,7 @@ Next, we'll enable the site with `a2ensite personal-site.conf` and restart Apach
 ## Setting up Git
 [Install git][install git] if you haven't already!
 
-We're going to be hosting the project's git repository on our production machine. In that repo we will create a post-receive hook that will clone the project into a temporary directory, run the Jekyll build task, and output the built site to a public directory. Sounds easy enough, right?
+We're going to be hosting the project's git repository on our production machine. In that repo we will create a post-receive hook that will clone the project into a temporary directory, run the Jekyll build task, and output the built site to the public directory. Sounds easy enough, right?
 
 First, let's create a new user on our production machine. This user will only run git-specific tasks.
 
@@ -103,14 +105,42 @@ Alright. We've gotten our git workflow set up, but our site still needs to be ma
 
 Git hooks allow us to run server scripts during most any point of the git workflow. Let's write a script to run after a push to our production server. We want this script to clone our repository into a temporary directory and then using Jekyll, build the site into our `/var/www/personal-site` directory. Luckily, we can do all this with just a few lines of code!
 
+On our production server as the `git` user let's `cd ~/repos/personal-site.git/hooks` to change into our hooks directory that was generated when we first initialized our empty repo. You will see some sample hooks here, but we want to create a new one named `post-receive` with the following code.
+
+{% highlight bash %}
+#!/bin/bash
+
+GIT_REPO=$HOME/repos/personal-site.git
+TMP_GIT_CLONE=$HOME/tmp/git/personal-site.git
+DESTINATION=/var/www/personal-site
+
+git clone $GIT_REPO $TMP_GIT_CLONE
+jekyll build --source $TMP_GIT_CLONE --destination $DESTINATION
+
+rm -rf $TMP_GIT_CLONE
+
+exit
+{% endhighlight %}
+
+Even if you've never written a bash script before, this should be fairly easy to follow along with. 
+
+The first three variables are defining the location of the git repo, the temporary clone location, and the final destination for our built site.
+
+Next, the git repo is cloned into the temporary location. Once cloned the script will run the Jekyll build task and specifiy a destination (the public directory). Finally, the temporary clone is removed. Yay!
+
+## All together now
+We should now have everything we need to succesfully auto-deploy our local changes to our production server. Using your favorite git GUI (or the command line) you can commit and push your changes to the repo on your production server. Once the repo receives your changes it will fire off the `post-receive` hook which will build your site. That's it!
 
 ## Useful Links
 - [Git on the Server - Setting Up the Server][git on the server]{:target="_blank"} - git-scm
-- [Trying out the "Push to deploy" feature of Git 2.3][push to deploy]{:target="_blank"} - Cedric Meury
+- [Setting up Push-to-Deploy with git][push to deploy]{:target="_blank"} - Kris Jordan
 
 [jekyll]: http://jekyllrb.com
 [shoptalk]: http://shoptalkshow.com
 [sass]: http://sass-lang.com/
+[github pages]: https://help.github.com/articles/what-are-github-pages/
+[github pages jekyll]: https://help.github.com/articles/using-jekyll-with-pages/
+[jekyll plugins]: http://jekyllrb.com/docs/plugins/
 [jekyll doc]: http://jekyllrb.com/docs/home/
 [digitalocean]: http://digitalocean.com
 [install ruby]: https://www.ruby-lang.org/en/documentation/installation/
@@ -119,4 +149,4 @@ Git hooks allow us to run server scripts during most any point of the git workfl
 [github for mac]: https://mac.github.com/
 [git hooks]: http://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
 [git on the server]: http://git-scm.com/book/en/v2/Git-on-the-Server-Setting-Up-the-Server
-[push to deploy]: http://www.cedric-meury.ch/2015/02/trying-out-the-push-to-deploy-feature-of-git-2-3/
+[push to deploy]: http://krisjordan.com/essays/setting-up-push-to-deploy-with-git

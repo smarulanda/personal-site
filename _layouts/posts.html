@@ -1,0 +1,23 @@
+---
+layout: default
+class: home
+---
+<section class="posts">
+
+	{% if page.category %}
+		
+		<h1>All posts in: {{ page.category }}</h1>
+		
+		{% for post in site.categories[page.category] %}
+			{% include posts_item.html %}
+		{% endfor %}
+
+	{% else %}
+		
+		{% for post in site.posts %}
+			{% include posts_item.html %}
+		{% endfor %}
+
+	{% endif %}
+
+</section>
