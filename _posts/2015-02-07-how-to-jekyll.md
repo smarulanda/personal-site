@@ -4,7 +4,7 @@ title:  "How I got this site running with Jekyll and auto-deploying with Git"
 date:   2015-02-07 14:22:27
 categories: [jekyll, git, digitalocean, apache, bash]
 ---
-I really like [Jekyll][jekyll]. Well, that's mostly true. Moreso, I really like what Jekyll isn't. It's not an over-bloated CMS. It doesn't have a WYSIWYG editor. It doesn't have a file-uploader. It doesn't require a database. Basically, it's not Wordpress.
+I really like [Jekyll][jekyll]. Well, that's mostly true. More so, I really like what Jekyll isn't. It's not an over-bloated CMS. It doesn't have a WYSIWYG editor. It doesn't have a file-uploader. It doesn't require a database. Basically, it's not Wordpress.
 
 I'd heard enough guests on the [ShopTalk][shoptalk] podcast recommend Jekyll so I decided to give it a look. It's great. It ships with built-in [Sass][sass] support. I can write my blog posts and pages in Markdown or HTML (or any custom parser). And with a git hook I can deploy my changes with a simple commit.
 
@@ -96,7 +96,7 @@ $ git clone git@yoursite.com:repos/personal-site.git	# clone over ssh
 $ cp /path/to/personal-site/* personal-site.git/	# copy jekyll contents
 {% endhighlight %}
 
-All these changes are itching to be commited to our remote repository. Let's go ahead and do that with `git commit -m "Initial commit"`. 
+All these changes are itching to be committed to our remote repository. Let's go ahead and do that with `git commit -m "Initial commit"`. 
 
 If you don't want to keep using the command line after this initial setup, there are plenty of great Git GUI interfaces out there. I've been using the [GitHub app][github for mac] for Mac to commit and sync my changes (it allows non-GitHub remotes).
 
@@ -129,7 +129,7 @@ The first three variables are defining the location of the git repo, the tempora
 Next, the git repo is cloned into the temporary location. Once cloned the script will run the Jekyll build task and specifiy a destination (the public directory). Finally, the temporary clone is removed. Yay!
 
 ## All together now
-We should now have everything we need to succesfully auto-deploy our local changes to our production server. Using your favorite git GUI (or the command line) you can commit and push your changes to the repo on your production server. Once the repo receives your changes it will fire off the `post-receive` hook which will build your site. That's it!
+We should now have everything we need to successfully auto-deploy our local changes to our production server. Using your favorite git GUI (or the command line) you can commit and push your changes to the repo on your production server. Once the repo receives your changes it will fire off the `post-receive` hook which will build your site. That's it!
 
 ## Useful Links
 - [Git on the Server - Setting Up the Server][git on the server]{:target="_blank"} - git-scm
