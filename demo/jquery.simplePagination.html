@@ -86,6 +86,92 @@ title: "jQuery Simple Pagination"
 	</tbody>
 </table>
 
+<strong>HTML</strong>
+
+{% highlight html tabsize=3%}
+<table id="doctors">
+	<thead>
+		<th>Designation</th>
+		<th>Actor</th>
+		<th>Year</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>First</td>
+			<td>William Hartnell</td>
+			<td>1963</td>
+		</tr>
+		<tr>
+			<td>Second</td>
+			<td>Patrick Troughton</td>
+			<td>1966</td>
+		</tr>
+		<tr>
+			<td>Third</td>
+			<td>Jon Pertwee</td>
+			<td>1970</td>
+		</tr>
+		<tr>
+			<td>Fourth</td>
+			<td>Tom Baker</td>
+			<td>1974</td>
+		</tr>
+		<tr>
+			<td>Fifth</td>
+			<td>Peter Davison</td>
+			<td>1981</td>
+		</tr>
+		<tr>
+			<td>Sixth</td>
+			<td>Colin Baker</td>
+			<td>1984</td>
+		</tr>
+		<tr>
+			<td>Seventh</td>
+			<td>Sylvester McCoy</td>
+			<td>1987</td>
+		</tr>
+		<tr>
+			<td>Eighth</td>
+			<td>Paul McGann</td>
+			<td>1996</td>
+		</tr>
+		<tr>
+			<td>War</td>
+			<td>John Hurt</td>
+			<td>2013</td>
+		</tr>
+		<tr>
+			<td>Ninth</td>
+			<td>Christopher Eccleston</td>
+			<td>2005</td>
+		</tr>
+		<tr>
+			<td>Tenth</td>
+			<td>David Tennant</td>
+			<td>2005</td>
+		</tr>
+		<tr>
+			<td>Eleventh</td>
+			<td>Matt Smith</td>
+			<td>2010</td>
+		</tr>
+		<tr>
+			<td>Twelfth</td>
+			<td>Peter Capaldi</td>
+			<td>2013</td>
+		</tr>
+	</tbody>
+</table>
+{% endhighlight %}
+
+<strong>JS</strong>
+{% highlight javascript tabsize=3%}
+$(function() {
+	$("#doctors").simplePagination();
+})
+{% endhighlight %}
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="//cdn.rawgit.com/smarulanda/jquery.simplePagination/master/jquery.simplePagination.js"></script>
 
