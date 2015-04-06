@@ -58,7 +58,7 @@ $ mkdir personal-site
 
 Let's create an Apache VirtualHost and point it to this new directory. We'll navigate to `/etc/apache2/sites-available`, open an editor (like nano or vi) for a new file `personal-site.conf`, and copy the following:
 
-{% highlight bash %}
+{% highlight apache %}
 <VirtualHost *:80>
 	ServerName sebastianmarulanda.com
 	DocumentRoot /var/www/personal-site
@@ -131,7 +131,7 @@ Next, the git repo is cloned into the temporary location. Once cloned the script
 ## All together now
 We should now have everything we need to successfully auto-deploy our local changes to our production server. Using your favorite git GUI (or the command line) you can commit and push your changes to the repo on your production server. Once the repo receives your changes it will fire off the `post-receive` hook which will build your site. That's it!
 
-## Useful Links
+## Useful links
 - [Git on the Server - Setting Up the Server][git on the server]{:target="_blank"} - git-scm
 - [Setting up Push-to-Deploy with git][push to deploy]{:target="_blank"} - Kris Jordan
 

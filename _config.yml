@@ -1,11 +1,11 @@
 # Site settings
 title: Sebastian Marulanda
-email: me@sebastianmarulanda.com
+email: sebastian@marulanda.us
 description: > # this means to ignore newlines until "baseurl:"
   Sebastian Marulanda is an Atlanta based web developer and designer.
 permalink: /:title
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://sebastianmarulanda.com" # the base hostname & protocol for your site
+url: "http://marulanda.us" # the base hostname & protocol for your site
 twitter_username: smarulanda
 github_username: smarulanda
 

@@ -98,6 +98,37 @@ form {
 }
 
 //--------------------------------------
+// Tables
+//--------------------------------------
+table {
+	width: 100%;
+	margin-bottom: $base-font-size;
+
+	th, td {
+		text-align: left;
+		padding: 6px;
+	}
+	
+	thead {
+		border-bottom: 2px solid $gray-color-light;
+	}
+	
+	tbody {
+		tr {
+			border-bottom: 1px solid $gray-color-light;
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			&:nth-child(2n+1) {
+			//	background: lighten($gray-color-light, 5%);
+			}
+		}	
+	}
+}
+
+//--------------------------------------
 // Highlighting
 //--------------------------------------
 ::selection {
@@ -111,4 +142,33 @@ form {
 .btn {
 	font-family: 'Oswald', sans-serif;
 	display: inline-block;
+	padding: ($base-font-size / 2) ($base-font-size);
+	border: none;
+
+	&.btn-primary {
+		background: $primary-color;
+		color: #fff;
+
+		&:hover {
+			background: darken($primary-color, 5%);
+		}
+	}
+
+	&.btn-dark {
+		background: $gray-color-dark;
+		color: #fff;
+
+		&:hover {
+			background: darken($gray-color-dark, 5%);
+		}
+	}
+}
+
+//--------------------------------------
+// Other
+//--------------------------------------
+.demo {
+	small {
+		color: $gray-color;
+	}
 }
