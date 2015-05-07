@@ -11,3 +11,6 @@ github_username: smarulanda
 
 # Build settings
 markdown: kramdown
+
+# Variables
+s3: "https://s3-us-west-2.amazonaws.com/marulanda.us"

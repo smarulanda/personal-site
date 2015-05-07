@@ -58,6 +58,12 @@ main {
 	}
 }
 
+#about {
+	img {
+		width: 100%;
+	}
+}
+
 #contact {
 	#gotcha {
 		display: none;
@@ -93,6 +99,7 @@ main {
 footer {
 	padding: ($base-font-size) 0;
 	text-align: center;
+	background: red;
 
 	#made-with {
 		margin-top: 4px;

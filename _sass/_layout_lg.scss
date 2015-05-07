@@ -91,6 +91,14 @@ main {
 	}
 }
 
+#about {
+	img {
+		max-width: 33%;
+		float: left;
+		margin-right: $base-font-size;
+	}
+}
+
 #contact {
 	input, textarea {
 		width: 100%;
