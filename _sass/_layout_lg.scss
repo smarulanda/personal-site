@@ -100,7 +100,7 @@ main {
 }
 
 #contact {
-	input, textarea {
+	input[type="text"], textarea {
 		width: 100%;
 		border: none;
 		background: $background-color;
@@ -109,15 +109,6 @@ main {
 
 		&:hover, &:focus {
 			background: darken($background-color, 5%);
-		}
-	}
-
-	input[type='submit'] {
-		background: $primary-color;
-		color: #fff;
-
-		&:hover, &:focus {
-			background: $gray-color-dark;
 		}
 	}
 
@@ -136,17 +127,6 @@ main {
 		color: #fff;
 		font-size: $base-font-size * 1.2;
 		margin-bottom: $spacing-unit;
-	}
-
-	a {
-		background: $primary-color;
-		padding: ($base-font-size) ($base-font-size * 3);
-		color: #fff;
-
-		&:hover {
-			background: #fff;
-			color: $text-color;
-		}
 	}
 }
 

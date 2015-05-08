@@ -144,6 +144,7 @@ table {
 	display: inline-block;
 	padding: ($base-font-size / 2) ($base-font-size);
 	border: none;
+	transition: background 0.2s linear;
 
 	&.btn-primary {
 		background: $primary-color;
@@ -161,6 +162,14 @@ table {
 		&:hover {
 			background: darken($gray-color-dark, 5%);
 		}
+	}
+
+	&.btn-lg {
+		padding: ($base-font-size) ($base-font-size * 3);
+	}
+
+	&.btn-block {
+		width: 100%;
 	}
 }
 
