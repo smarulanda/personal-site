@@ -9,9 +9,7 @@ class: about
 
 I'm Sebastian, a full stack web developer and designer living in the bustling east side of Atlanta.
 
-I began my undergraduate career at Georgia Tech as an Aerospace Engineering major with little-to-no programming experience. It wasn't until my second semester when I took the required Intro to Computer Science for Engineers course that everything clicked.
-
-I fell in love with the problem solving aspect of programming. You could write a script, hit run, and it either worked or it didn't. There was an immediacy to it that I wasn't getting with my theoretical engineering problems. So I switched majors. Perhaps later in the game than I should have (don't ask for my transcripts).
+I began my undergraduate career at Georgia Tech as an Aerospace Engineering major, but I ended up falling in love with the problem solving aspect of programming. You could write a script, hit run, and it either worked or it didn't. There was an immediacy to it that I wasn't getting with my theoretical engineering problems. So I switched majors.
 
 I've been working here in Atlanta since graduating from Tech. My full time job is as an Applications Engineer for a fantastic company called [Peach New Media](http://peachnewmedia.com), but I also spend a lot of my free time freelancing or working on [side projects](/projects).
 

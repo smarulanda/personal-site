@@ -83,23 +83,11 @@ main {
 			display: block;
 		}
 	}
-
-	a {
-		background: $primary-color;
-		padding: ($base-font-size) ($base-font-size * 3);
-		color: #fff;
-
-		&:hover {
-			background: #fff;
-			color: $text-color;
-		}
-	}
 }
 
 footer {
 	padding: ($base-font-size) 0;
 	text-align: center;
-	background: red;
 
 	#made-with {
 		margin-top: 4px;
