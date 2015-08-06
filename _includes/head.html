@@ -10,6 +10,8 @@
 
 	<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
+	{% if page.id %}<link rel="author" href="{{ site.google_plus_link }}">{% endif %}
+
 	<link href="//fonts.googleapis.com/css?family=Oswald:300,400|Roboto:300,700" rel="stylesheet" type="text/css">
 
 	<link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">

@@ -14,3 +14,7 @@ markdown: kramdown
 
 # Variables
 s3: "https://s3.amazonaws.com/marulanda.me"
+facebook_link: "https://facebook.com/smarulanda3"
+google_plus_link: "https://plus.google.com/+SebastianMarulanda"
+twitter_link: "https://twitter.com/smarulanda"
+github_link: "https://github.com/smarulanda"
