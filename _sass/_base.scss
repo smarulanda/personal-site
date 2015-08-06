@@ -179,6 +179,7 @@ table {
 img.th {
 	border: 5px solid #fff;
 	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+	width: 100%;
 }
 
 //--------------------------------------
@@ -188,4 +189,8 @@ img.th {
 	small {
 		color: $gray-color;
 	}
+}
+
+.text-center {
+	text-align: center;
 }
