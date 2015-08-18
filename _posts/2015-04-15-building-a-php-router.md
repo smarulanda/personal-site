@@ -19,6 +19,10 @@ or even:
 
 These clean URLs are known as [Semantic URLs][semantic url] or [RESTful URLs][semantic url]. We're going to accomplish this by creating a small and reusable PHP class and an Apache `.htaccess` file.
 
+<div class="text-center">
+	<a href="https://github.com/smarulanda/Siesta" class="btn btn-dark" target="_blank"><i class="fa fa-github"></i> View the source on GitHub</a>
+</div>
+
 ## The .htaccess file
 
 An `.htaccess` file lives in the directory level of your application. They allows us to override the server's global configuration for the particular directory. There are many use cases for including an `.htaccess` file, the most common being authorization/authentication for the directory. We can also use it to blacklist certain IP addresses, set custom error responses, and what we'll be focusing on in this project: rewriting URLs.
@@ -65,6 +69,10 @@ class Siesta {
 	}
 }
 {% endhighlight %}
+
+Let's take a look at the `__construct()` method. This method will get called automatically whenever a new `Siesta` object is instantiated, usually via `new Siesta()`.
+
+The constructor allows a `$base_path` to be supplied; this can save a bit of repetitive code if the routes share a common base path.
 
 To be continued...
 
