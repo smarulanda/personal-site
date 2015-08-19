@@ -7,9 +7,9 @@ categories: [node.js, pushbullet]
 
 In this tutorial, we're going to write a small [Node.js][nodejs] script that will check if an Amazon product has dropped below a certain price. We'll have the script ping the product page every minute, and if the price has dropped enough, we'll send out a [Pushbullet][pushbullet] notification.
 
-<div class="text-center">
+<p class="text-center">
 	<a href="https://github.com/smarulanda/pricetracker" class="btn btn-dark" target="_blank"><i class="fa fa-github"></i> View the source on GitHub</a>
-</div>
+</p>
 
 ## Node.js
 Node.js has become quite popular in the past several years, and with good reason. Not only does it allow developers to use JavaScript across the stack, but it enables them to create real-time websites with push capability. Although we're not going to dive into the complexities of WebSockets, scalability, or the event-loop, it's worth [taking a look][whynode] at why the environment has become so popular.

@@ -23,10 +23,10 @@ We're going to be building a small plugin that can [paginate][pagination] an HTM
 
 The following links will take you to a working demo of the finished plugin and the source code on GitHub.
 
-<div class="text-center">
+<p class="text-center">
 	<a href="/demo/jquery.simplePagination.html" class="btn btn-primary"><i class="fa fa-laptop"></i> Demo</a>
 	<a href="https://github.com/smarulanda/jquery.simplePagination" class="btn btn-dark" target="_blank"><i class="fa fa-github"></i> GitHub</a>
-</div>
+</p>
 
 ## Getting started
 
@@ -115,9 +115,9 @@ I've attached a simple `onclick` event to the "Run" button below. Ignoring some 
 
 Click the button and it will attach the `simpleColorizer` plugin we just wrote to every `h2` element on the page. Try it out!
 
-<div class="text-center">
+<p class="text-center">
 	<button class="btn btn-primary" onclick="$('h2').simpleColorizer()"><i class="fa fa-terminal"></i> Run</button>
-</div>
+</p>
 
 ## Give them options!
 
