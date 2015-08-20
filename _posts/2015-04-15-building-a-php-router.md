@@ -99,7 +99,144 @@ The `$callable` parameter can be a little tricky to understand at first. Essenti
 
 Back to the `respond()` method. The first `if else` statement checks if our supplied route is simply a root route `/`, if it is then the `$route` is the same as the `$base_path`, otherwise we'll append the supplied `$route` to the `$base_path`.
 
-To be continued...
+Finally, we check if the supplied method and URI match the actual method and URI. If they both match, then we execute our callable. This is how the method might get called in practice:
+
+{% highlight php startinline tabsize=3 %}
+$siesta = new Siesta();
+
+// Respond to a home page request
+$siesta->respond("GET", "/", function() {
+	echo "Root path get";
+});
+
+// Respond to a delete request at the supplied URI
+$siesta->respond("DELETE", "/house/slytherin", function() {
+	echo "Removing Slytherin...";
+});
+{% endhighlight %}
+
+## What about wild cards?
+
+Our class is ready to respond to any request you can throw its way. That's the problem though, we'd have to manually write a response to every possible URI we want to catch. That means routes like `/product/12` and `/product/52` would each need their own response code block. Not very [DRY][dry] is it?
+
+What if instead we supply a `$route` along the lines of `/product/(int:id)`, where `int` means we are looking for an integer and `id` is the variable we want to assign that integer to. Now we can write just one response block and use the `$id` variable within our `$callable`. That might look something like this:
+
+{% highlight php startinline tabsize=3 %}
+$siesta = new Siesta();
+
+$siesta->respond("GET", "/person/(int:id)", function($id) {
+	echo "You found person " . $id;
+});
+{% endhighlight %}
+
+There are two types of wildcards we'll want to match: an integer and anything else. Let's add a class member variable to Siesta for these two situations.
+
+{% highlight php startinline tabsize=3 %}
+protected $wild_cards = array('int' => '/^[0-9]+$/', 'any' => '/^[0-9A-Za-z]+$/');
+{% endhighlight %}
+
+We'll use these regular expressions with PHP's `preg_match` method to determine what type of wild card we're looking at.
+
+Let's write some sample code that compares a wild card delimiter `(int:id)` with a value `12` and returns an array with the pattern `array('id' => '12')`.
+
+{% highlight php startinline tabsize=3 %}
+$variables = array();
+$delimiter = "(int:id)";
+$match = "12";
+
+if ($delimiter[0] == '(' && substr($delimiter, -1) == ')') {
+	$strip = str_replace(array('(', ')'), '', $delimiter);
+	$exp = explode(':', $strip);
+
+	if (array_key_exists($exp[0], $this->wild_cards)) {
+		$pattern = $this->wild_cards[$exp[0]];
+		
+		if (preg_match($pattern, $match)) {
+			$variables[$exp[1]] = $match;
+		}
+	}
+}
+
+return $variables;
+{% endhighlight %}
+
+The first `if` statement makes sure the first and last characters of the delimiter are `(` and `)` respectively. Next, we remove those parentheses using `str_replace` and `explode` that string around the `:`. We're left with an array `$exp` with values `int` and `id`.
+
+The next `if` statement checks if the wild card type supplied in the `$delimiter` matches our allowed `$wild_cards`. If it matches we take the related regex pattern from that array.
+
+Finally, the last `if` checks the pattern against the supplied `$match`, in this case `12`. If it does, we add to the `$variables` array; with `id` as the key and `12` as the value.
+
+## Putting it all together
+
+Let's write a private method called `_match_wild_cards()` that takes in one parameter: a route. The route might contain one or several wild card delimiters. The method will check this route against the `$request_uri` and determine if it matches the pattern or not.
+
+Let's retool the sample code above to return an array of key-values for our wild cards.
+
+{% highlight php startinline tabsize=3 %}
+private function _match_wild_cards($route) {
+	$variables = array();
+
+	$exp_request = explode('/', $this->request_uri);
+	$exp_route = explode('/', $route);
+
+	if (count($exp_request) == count($exp_route)) {
+		foreach ($exp_route as $key => $value) {
+			if ($value == $exp_request[$key]) {
+				continue;	// So far the routes are matching
+			}
+			elseif ($value[0] == '(' && substr($value, -1) == ')') {
+				$strip = str_replace(array('(', ')'), '', $value);
+				$exp = explode(':', $strip);
+
+				if (array_key_exists($exp[0], $this->wild_cards)) {
+					$pattern = $this->wild_cards[$exp[0]];
+					
+					if (preg_match($pattern, $exp_request[$key])) {
+						if (isset($exp[1])) {
+							$variables[$exp[1]] = $exp_request[$key];
+						}
+
+						continue;	// We have a matching pattern
+					}
+				}
+			}
+
+			return false;	// There is a mis-match
+		}
+
+		return $variables;	// All segments match
+	}
+
+	return false;	// Catch anything else
+}
+{% endhighlight %}
+
+We've essentially placed our sample code into a `foreach` loop that goes through each supplied route segment and matches it against each request URI segment. We'll return an `array` if successful, `false` otherwise.
+
+Now we just modify our `respond()` method to check for wild card matches:
+
+{% highlight php startinline tabsize=3 %}
+public function respond($method, $route, $callable) {
+	$method = strtolower($method);
+
+	if ($route == '/') $route = $this->base_path;
+	else $route = $this->base_path . $route;
+
+	$matches = $this->_match_wild_cards($route);
+
+	if (is_array($matches) && $method == $this->request_method) {
+		// Routes match and request method matches
+		call_user_func_array($callable, $matches);
+	}
+}
+{% endhighlight %}
+
+Using `call_user_func_array()` allows us to invoke the `$callable` but also supplies it parameters: the values in `$matches`.
+
+I hope this all makes sense, it's definitely a lot to take in. Make sure you peruse the full [source code][repo] to see how everything comes together. And as always, please feel free [reach out][contact] if you have any questions!
 
 [semantic url]: http://en.wikipedia.org/wiki/Semantic_URL
 [callable]: http://php.net/manual/en/language.types.callable.php
+[dry]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
+[contact]: /contact
+[repo]: https://github.com/smarulanda/Siesta
