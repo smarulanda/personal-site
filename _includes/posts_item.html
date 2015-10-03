@@ -9,5 +9,8 @@
 
 	{{ post.excerpt }}
 
-	<a href="{{ post.url }}">Read more...</a>
+	<i class="fa fa-tags gray-color"></i> 
+	{% for category in post.categories %}
+		<a href="/category/{{ category }}">{{ category }}</a>{% if forloop.last != true %},{% endif %}
+	{% endfor %}
 </article>

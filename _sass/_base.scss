@@ -61,6 +61,7 @@ code {
 }
 
 pre {
+	margin: 0;
 	padding: 8px 12px;
 	overflow-x: scroll;
 
@@ -69,6 +70,19 @@ pre {
 		padding-right: 0;
 		padding-left: 0;
 	}
+}
+
+.highlight {
+	margin-bottom: 1em;
+}
+
+.highlight-header {
+	font-family: monospace, monospace;
+	font-size: $base-font-size * 0.75;
+	font-weight: 300;
+	background: $gray-color-dark;
+	color: #fff;
+	padding: 8px 12px;
 }
 
 //--------------------------------------
@@ -193,4 +207,8 @@ img.th {
 
 .text-center {
 	text-align: center;
+}
+
+.gray-color {
+	color: $gray-color;
 }
