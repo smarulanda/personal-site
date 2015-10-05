@@ -3,12 +3,13 @@ layout: post
 title:  "Writing an Amazon price tracker with Pushbullet notifications in Node.js"
 date:   2015-07-16 12:31:27
 categories: [node.js, pushbullet]
+project_link: https://github.com/smarulanda/amazon-price-tracker
 ---
 
 In this tutorial, we're going to write a small [Node.js][nodejs] script that will check if an Amazon product has dropped below a certain price. We'll have the script ping the product page every minute, and if the price has dropped enough, we'll send out a [Pushbullet][pushbullet] notification.
 
 <p class="text-center">
-	<a href="https://github.com/smarulanda/pricetracker" class="btn btn-dark" target="_blank"><i class="fa fa-github"></i> View the source on GitHub</a>
+	<a href="{{ page.project_link }}" class="btn btn-dark" target="_blank"><i class="fa fa-github"></i> View the source on GitHub</a>
 </p>
 
 ## Node.js
@@ -29,6 +30,7 @@ You don't have to write the `package.json` file from scratch. Navigate to your p
 ## Getting the product price
 The most important step in our project is to be able to pull a product's current price from Amazon. Let's start with this very basic script in `app.js` and run through each line to see what's going on.
 
+<div class="highlight-header">~/pricetracker/app.js</div>
 {% highlight javascript tabsize=3 %}
 var request = require('request');
 var fs = require('fs');
@@ -64,6 +66,7 @@ Luckily there's an existing module that can teach our server HTML, it's called [
 
 Once you `require()` it in your script, don't forget to run `npm install cheerio` from the command line.
 
+<div class="highlight-header">~/pricetracker/app.js</div>
 {% highlight javascript tabsize=3 %}
 ...
 var cheerio = require('cheerio');
@@ -89,6 +92,7 @@ You'll notice that we wrapped our `request()` block in a function `checkPrice()`
 ## Sending a Pushbullet notification
 So far our script is only printing out the product's price to the console every minute. How do we trigger a Pushbullet notification when the price has dropped below our target price? Once again we're in luck! Someone has already written a Pushbullet API [module][node-pushbullet].
 
+<div class="highlight-header">~/pricetracker/app.js</div>
 {% highlight javascript tabsize=3 %}
 ...
 var pb = require('pushbullet');
@@ -121,6 +125,7 @@ You could always leave placeholders in the source `"xxxxx"` and let users know t
 
 Check out the [source code][repo] for this project. I take advantage of a module called `prompt`. Instead of having the user hard-code variables like their pushbullet token, product ID, or desired price, we can instead prompt them from the command line.
 
+<div class="highlight-header">~/pricetracker/app.js</div>
 {% highlight javascript tabsize=3 %}
 var schema = {
 	properties: {

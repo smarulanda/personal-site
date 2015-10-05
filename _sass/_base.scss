@@ -73,7 +73,7 @@ pre {
 }
 
 .highlight {
-	margin-bottom: 1em;
+	margin-bottom: $base-font-size * 1.5;
 }
 
 .highlight-header {
@@ -209,6 +209,8 @@ img.th {
 	text-align: center;
 }
 
-.gray-color {
-	color: $gray-color;
+blockquote {
+	border-left: 6px solid lighten($gray-color, 10%);
+	margin-left: 0;
+	padding-left: $base-font-size * 1.5;
 }

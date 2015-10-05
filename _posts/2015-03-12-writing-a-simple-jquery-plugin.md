@@ -2,7 +2,8 @@
 layout: post
 title:  "Writing a simple jQuery plugin"
 date:   2015-03-12 16:57:21
-categories: jquery javascript velociraptors
+categories: [jquery, javascript, velociraptors]
+project_link: https://github.com/smarulanda/jquery.simplePagination
 ---
 
 [jQuery][jquery] is everywhere. Once you're familiar with the syntax it makes DOM manipulation and interactivity a snap. Thanks to its ease-of-use there is no shortage of developers who rely on jQuery. This means there are plenty of free, open-source, and powerful jQuery plugins just waiting to be used in your project.
@@ -25,7 +26,7 @@ The following links will take you to a working demo of the finished plugin and t
 
 <p class="text-center">
 	<a href="/demo/jquery.simplePagination.html" class="btn btn-primary"><i class="fa fa-laptop"></i> Demo</a>
-	<a href="https://github.com/smarulanda/jquery.simplePagination" class="btn btn-dark" target="_blank"><i class="fa fa-github"></i> GitHub</a>
+	<a href="{{ page.project_link }}" class="btn btn-dark" target="_blank"><i class="fa fa-github"></i> GitHub</a>
 </p>
 
 ## Getting started
@@ -34,16 +35,17 @@ The actual plugin will reside in a single javascript file, but we'll need a page
 
 This is what our project structure should look like. The `index.html` file will be our test page. You can grab the latest copy of jQuery [here][jquery download].
 
-{% highlight bash %}
-Project
-|-- index.html
-|-- js
-|   |-- jquery-1.11.2.min.js
-|   |-- jquery.simplePagination.js
+{% highlight bash tabsize=4 %}
+project
+├── index.html
+└── js
+|	├── jquery-1.11.2.min.js
+|	└── jquery.simplePagination.js
 {% endhighlight %}
 
 Let's go ahead and fill in our `index.html` page with some boilerplate HTML. We'll also include jQuery and our empty plugin file in the `<head>` tag (although some prefer to place their scripts right before the closing `</body>` tag).
 
+<div class="highlight-header">~/project/index.html</div>
 {% highlight html tabsize=3%}
 <!DOCTYPE html>
 <html>
@@ -67,6 +69,7 @@ You're going to want to add in a large-ish table to the `<body>`. You can genera
 
 It doesn't take much to get the basic jQuery plugin structure in place. Take a look at the following skeleton code:
 
+<div class="highlight-header">~/project/js/jquery.simplePagination.js</div>
 {% highlight javascript tabsize=3 %}
 (function($) {
 
@@ -125,6 +128,7 @@ Alright, let's jump back into our pagination plugin. The point of our plugin is 
 
 Our plugin should be able to provide a default value, but also the ability to override that value without having to edit the source. So how do we allow for that? Check it out:
 
+<div class="highlight-header">~/project/js/jquery.simplePagination.js</div>
 {% highlight javascript tabsize=3 %}
 (function($) {
 
@@ -158,6 +162,7 @@ Next, we use jQuery's `$.extend` method to merge any user-supplied values with o
 
 Our "Next" and "Previous" buttons don't yet exist in the [DOM][DOM] so let's build them into our plugin.
 
+<div class="highlight-header">~/project/js/jquery.simplePagination.js</div>
 {% highlight javascript tabsize=3 %}
 ...
 return this.each(function() {
@@ -186,6 +191,7 @@ At this point our plugin will create a container `<div>` with children elements 
 
 You can add the following code to your `index.html` file to make sure it all works.
 
+<div class="highlight-header">~/project/index.html</div>
 {% highlight html tabsize=3 %}
 <!-- This can go anywhere after your jQuery and plugin scripts -->
 <script>
@@ -203,6 +209,7 @@ You can add the following code to your `index.html` file to make sure it all wor
 
 So now we have our buttons displaying after the table, but clicking them still doesn't do anything, and our table is still showing every row. We need to add some click listeners to our buttons!
 
+<div class="highlight-header">~/project/js/jquery.simplePagination.js</div>
 {% highlight javascript tabsize=3 %}
 ...
 $(this).after(container);	// Place the container below the table
@@ -244,6 +251,7 @@ We've peppered our plugin with a few references to `update()` which we have yet 
 
 Let's get to it.
 
+<div class="highlight-header">~/project/js/jquery.simplePagination.js</div>
 {% highlight javascript tabsize=3 %}
 ...
 function update() {
@@ -280,7 +288,7 @@ You can also view the GitHub [repository][repo]. I've added a few more options a
 
 ## Conclusion
 
-We've only just touched the tip of the jQuery plugin iceberg, but if you follow the best practices that we've stepped through in these examples you'll be building your own DRY, extensible, and production-ready plugins in no time.
+We've only just brushed the tip of the jQuery plugin iceberg, but if you follow the best practices that we've stepped through in these examples you'll be building your own DRY, extensible, and production-ready plugins in no time.
 
 Just keep plugging away.
 

@@ -8,7 +8,7 @@ I really like [Jekyll][jekyll]. Well, that's mostly true. More so, I really like
 
 I'd heard enough guests on the [ShopTalk][shoptalk] podcast recommend Jekyll so I decided to give it a look. It's great. It ships with built-in [Sass][sass] support. I can write my blog posts and pages in Markdown or HTML (or any custom parser). And with a git hook I can deploy my changes with a simple commit.
 
-**Note:** [GitHub Pages][github pages] supports [Jekyll][github pages jekyll] and will actually run your project through the program on every push. This is great if you don't want to provide your own hosting, however, these pages will be generated using the `--safe` option. This means you can't use certain fun Jekyll features like [plugins][jekyll plugins].
+> **Note:** [GitHub Pages][github pages] supports [Jekyll][github pages jekyll] and will actually run your project through the program on every push. This is great if you don't want to provide your own hosting, however, these pages will be generated using the `--safe` option. This means you can't use certain fun Jekyll features like [plugins][jekyll plugins].
 
 So let's go through all the steps I took to get this site running and automatically deploying.
 
@@ -58,9 +58,10 @@ $ mkdir personal-site
 
 Let's create an Apache VirtualHost and point it to this new directory. We'll navigate to `/etc/apache2/sites-available`, open an editor (like nano or vi) for a new file `personal-site.conf`, and copy the following:
 
+<div class="highlight-header">/etc/apache2/sites-available</div>
 {% highlight apache %}
 <VirtualHost *:80>
-	ServerName sebastianmarulanda.com
+	ServerName marulanda.me
 	DocumentRoot /var/www/personal-site
 </VirtualHost>
 {% endhighlight %}
@@ -107,6 +108,7 @@ Git hooks allow us to run server scripts during most any point of the git workfl
 
 On our production server as the `git` user let's `cd ~/repos/personal-site.git/hooks` to change into our hooks directory that was generated when we first initialized our empty repo. You will see some sample hooks here, but we want to create a new one named `post-receive` with the following code.
 
+<div class="highlight-header">~/repos/personal-site.git/hooks/post-receive</div>
 {% highlight bash %}
 #!/bin/bash
 

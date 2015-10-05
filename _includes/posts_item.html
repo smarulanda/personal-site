@@ -8,9 +8,27 @@
 	</h1>
 
 	{{ post.excerpt }}
-
-	<i class="fa fa-tags gray-color"></i> 
-	{% for category in post.categories %}
-		<a href="/category/{{ category }}">{{ category }}</a>{% if forloop.last != true %},{% endif %}
-	{% endfor %}
+	
+	<div class="post-extras">
+		<div class="tags">
+			<span class="gray-color">
+				<i class="fa fa-tags fa-fw"></i>
+				Tags: 
+			</span>
+			
+			{% for category in post.categories %}
+				<a href="/category/{{ category }}">{{ category }}</a>{% if forloop.last != true %},{% endif %}
+			{% endfor %}
+		</div>
+		
+		{% if post.project_link %}
+			<div class="project">
+				<span class="gray-color">
+					<i class="fa fa-github fa-fw"></i>
+					Project:
+				</span>
+				<a href="{{ post.project_link}}">{{ post.project_link }}</a>
+			</div>
+		{% endif %}	
+	</div>
 </article>

@@ -3,6 +3,7 @@ layout: post
 title:  "Automatically deploy GitHub branches to a subdomain"
 date:   2015-09-25 14:30:29
 categories: [github, bash, webhooks]
+project_link: https://github.com/smarulanda/github-to-subdomain
 ---
 
 Even if you're the sole developer on a project, big or small, I always advocate using [git][git] for version control. Using version control software removes the tediousness of having to FTP individual files up to your production server, allows you to view the entire history of your repository, and encourage the use of ["feature branches"][branches] that can be merged into the "master branch" once ready.
@@ -40,14 +41,13 @@ This tutorial is based on the assumption that you have full control over the ser
 ## Directory and File structure
 It should only take a handful of files to get the functionality we want. I'm placing the files in the `/root/webhooks` directory on my server, but these can go just about anywhere. Make sure to remember the location though, it'll come back up in a bit.
 
-{% highlight bash tabsize=2 %}
-.
-|── root
-|	└── webhooks
-|		├── branch-create.sh
-|		├── branch-push.sh
-|		├── branch-delete.sh
-|		└── vhost.template
+{% highlight bash tabsize=4 %}
+root
+└── webhooks
+|	├── branch-create.sh
+|	├── branch-push.sh
+|	├── branch-delete.sh
+|	└── vhost.template
 {% endhighlight %}
 
 ## The scripts: branch creation

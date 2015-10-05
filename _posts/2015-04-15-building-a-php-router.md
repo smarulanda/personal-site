@@ -3,6 +3,7 @@ layout: post
 title: "Building a lightweight PHP router"
 date: 2015-04-15 14:22:27
 categories: [php, apache]
+project_link: https://github.com/smarulanda/Siesta
 ---
 
 Non-semantic URLs are out. There's no reason for your users to see a long chain of query strings in their address bar. They are not memorable, they give the user very little feedback, and they may even expose your server-side setup. With just a little bit of back-end wizardry we can turn something like this:
@@ -20,7 +21,7 @@ or even:
 These clean URLs are known as [Semantic URLs][semantic url] or [RESTful URLs][semantic url]. We're going to accomplish this by creating a small and reusable PHP class and an Apache `.htaccess` file.
 
 <p class="text-center">
-	<a href="https://github.com/smarulanda/Siesta" class="btn btn-dark" target="_blank"><i class="fa fa-github"></i> View the source on GitHub</a>
+	<a href="{{ page.project_link }}" class="btn btn-dark" target="_blank"><i class="fa fa-github"></i> View the source on GitHub</a>
 </p>
 
 ## The .htaccess file
@@ -29,6 +30,7 @@ An `.htaccess` file lives in the directory level of your application. They allow
 
 Let's take a look at this `.htaccess` file. These 4 lines are all we'll need for this project.
 
+<div class="highlight-header">~/project/.htaccess</div>
 {% highlight apache tabsize=3 %}
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -46,6 +48,7 @@ Since our routing class allows for RESTful URLs, let's give it a clever name. Ho
 
 The class should be able to distinguish the type of incoming HTTP request. A `GET` request usually returns one or many resources, `POST` creates a new resource, `PUT` or `PATCH` update an existing resource, and `DELETE` deletes a resource.
 
+<div class="highlight-header">~/project/Siesta.php</div>
 {% highlight php startinline tabsize=3 %}
 class Siesta {
 	protected $base_path;
@@ -80,6 +83,7 @@ Finally, we call the private method `_determine_http_method()` which checks the 
 
 The `__construct()` method already does a lot of work for us. Just by instantiating the class we already have access to the `$request_uri` and the `$request_method`. Now let's write a method to respond to incoming requests.
 
+<div class="highlight-header">~/project/Siesta.php</div>
 {% highlight php startinline tabsize=3 %}
 public function respond($method, $route, $callable) {
 	$method = strtolower($method);
@@ -101,6 +105,7 @@ Back to the `respond()` method. The first `if else` statement checks if our supp
 
 Finally, we check if the supplied method and URI match the actual method and URI. If they both match, then we execute our callable. This is how the method might get called in practice:
 
+<div class="highlight-header">~/project/index.php</div>
 {% highlight php startinline tabsize=3 %}
 $siesta = new Siesta();
 
@@ -172,6 +177,7 @@ Let's write a private method called `_match_wild_cards()` that takes in one para
 
 Let's retool the sample code above to return an array of key-values for our wild cards.
 
+<div class="highlight-header">~/project/Siesta.php</div>
 {% highlight php startinline tabsize=3 %}
 private function _match_wild_cards($route) {
 	$variables = array();
@@ -215,6 +221,7 @@ We've essentially placed our sample code into a `foreach` loop that goes through
 
 Now we just modify our `respond()` method to check for wild card matches:
 
+<div class="highlight-header">~/project/Siesta.php</div>
 {% highlight php startinline tabsize=3 %}
 public function respond($method, $route, $callable) {
 	$method = strtolower($method);
