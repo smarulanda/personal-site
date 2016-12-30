@@ -11,6 +11,7 @@ github_username: smarulanda
 
 # Build settings
 markdown: kramdown
+highlighter: pygments 
 
 # Variables
 s3: "https://s3.amazonaws.com/marulanda.me"
