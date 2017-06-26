@@ -228,7 +228,7 @@ I hope you enjoyed following along. Not only did we manage to build a fully func
 
 Consider adding more features to what we've built here. Add a click tracker to count how many times a shortened link has been accessed, or validate submitted URLs to ensure they point to an existing site, or allow the user to supply their own short-code for a URL...
 
-It's in your hands now. Enjoy!
+It's all up to you. Enjoy!
 
 ## Useful links
 - [Getting Started on Heroku with Node.js][getting started]{:target="_blank"} - heroku.com
